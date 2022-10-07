@@ -126,14 +126,24 @@ def display(filename):
     return redirect(url_for('static', filename = f"./uploads/{filename}"))
 
 
+# server {
+#  server_name 3.85.204.66 ;
+#  listen 80 default_server;
+#  location / {
+#  proxy_pass http://127.0.0.1:8000;
+#  }
+#
+# }
+
+
 
 # run the app.
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
     application.debug = True
-    # application.run(host="0.0.0.0")
-
-    from gevent.pywsgi import WSGIServer
-    http_server = WSGIServer(('', 8000), application)
-    http_server.serve_forever()
+    application.run(host="0.0.0.0",port=8000)
+    #
+    # from gevent.pywsgi import WSGIServer
+    # http_server = WSGIServer(('', 8000), application)
+    # http_server.serve_forever()
