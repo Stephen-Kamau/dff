@@ -100,15 +100,15 @@ def create_upload_file():
             file_name = file.filename
             #save these segs
             sub_dir = f"{os.getcwd()}/{file_name.split('.')[0]}"
-            # if not os.path.isdir(sub_dir):
-            #
-            #     os.mkdir(file_name.split(".")[0])
-            # else:
-            #     print("Path Found Alread")
-            # for i in range(res.shape[-1]):
-            #     full_slice_path = f"{sub_dir}/slice_{i}.png"
-            #     #save.
-            #     imageio.imwrite(full_slice_path, res[0,:,:,i])
+            if not os.path.isdir(sub_dir):
+
+                os.mkdir(file_name.split(".")[0])
+            else:
+                print("Path Found Alread")
+            for i in range(res.shape[-1]):
+                full_slice_path = f"{sub_dir}/slice_{i}.png"
+                #save.
+                imageio.imwrite(full_slice_path, res[0,:,:,i])
 
             print("Done Inferencing")
             return {"filename": file.filename, "saved_dir":sub_dir}
